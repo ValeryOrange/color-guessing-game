@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Color guessing game</title>
+	<style>
+	</style>
+</head>
+<body>
+			<script>
+	alert("Welcome to my color guessing game! Would you be quick-witted enough to guess what the color I think of?");
+	var setOfColor = ["aqua", "bisque", "black", "blue", "crimson", "darkblue", "fuchsia", "grey", "lavender", "purple"];
+	targetPosition = parseInt(Math.random()*setOfColor.length);
+	targetColor = setOfColor[targetPosition];
+	var isFinished = false;
+	var counter = 0;
+	game();
+
+	function game(){
+		while (!isFinished){
+			counter += 1;
+			var userColor = prompt("Guess which one of the following colors I think of. Aqua, bisque, black, blue, crimson, darkblue, fuchsia, grey, lavender, purple.");
+			checkGuess(userColor);
+		}
+	}
+
+	function checkGuess(customColor){
+		var isInColors = false;
+		isInColors = setOfColor.forEach(function (item, i, setOfColor){
+			if (customColor == item){
+				return isInColors = true;
+			}
+		});
+		if (isInColors == false){
+			alert("It looks like your color is out of my range. Please, try again");
+		}else if (customColor == targetColor){
+			var myBody = document.getElementsByTagName("body")[0];
+			myBody.style.background = targetColor;
+			alert ("Congratulation! You've guessed my color in " + counter + "steps. You must be a mentalist, aren't you?");
+			isFinished = true;
+		}else if (customColor > targetColor){
+			alert ("Oh no! You color is alphabetically bigger than my. Please, try again.")
+		}else if (customColor < targetColor){
+			alert ("I'm sorry, but you color is alphabetically smaller than my. I believe you will be luckier next time. Try again.");
+		} else {
+			alert ("You wrote something strange. I can't even understand it. Please, try again.");
+		}
+	}
+	</script>
+	<h1>Welcome to a game!</h1>
+</body>
+</html>
